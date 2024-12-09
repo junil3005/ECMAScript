@@ -57,4 +57,5 @@ console.log("NaN is Finite?",
 
 //  Infinity와 수치형 데이터의 산술 연산 -> Infinity
 let result = 1 / 0 + 2024;
-console.log(result, typeof result);            
+console.log(result, typeof result); 
+          
