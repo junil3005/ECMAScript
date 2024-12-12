@@ -32,4 +32,19 @@
             &copy;Bit Academy
         </div>
     </body>
+    <script>
+        window.addEventListener("load", event => {
+            //  #list li 모두 삭제
+            let cartItems = document.querySelectorAll("#list li");
+            //  -> HTMLCollection
+            console.log("items:", cartItems);
+            for (let i = 0; i < cartItems.length; i++) {
+                //  부모로부터 제거
+                let item = cartItems[i];
+                // let parent = document.getElementById("list");
+                let parent = item.parentNode;
+                parent.removeChild(item);   //  부모로부터 노드 제거
+            }
+        });
+    </script>
 </html>
