@@ -67,6 +67,8 @@ function fetchData() {
 async function processData() {
     console.log("데이터를 가져오는 중...");
 
+    //  await 키워드 : Promise가 해결될 때까지 코드를 일시 중단시킴
+    //  Promise가 해결되면 await는 Promise의 결과를 반환
     const data = await fetchData();
     console.log("가져온 데이터:", data);
 }
