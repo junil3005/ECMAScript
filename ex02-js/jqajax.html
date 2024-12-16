@@ -15,6 +15,7 @@
     <div id="info"></div>
 
     <!-- #btnCallMovies로 받아온 json 데이터로 요소를 만들어서 추가 -->
+    <h2>Pixar Movies</h2>
     <table id="list" border="1" width="640">
 
     </table>
@@ -26,6 +27,7 @@
             alert("코드 조각을 불러옵니다.");
 
             //  ajax로 코드 조각 불러오기
+            /*
             $.ajax({
                 url: "snippet.html",    //  URL
                 type: "GET",            //  요청방식
@@ -47,6 +49,21 @@
                     console.error("REQUEST:", request);
                 }
             });
+            */
+           //   ES6
+           //   - fetch : 통신 함수
+           //   - axios : 좀 더 고급 통신 기능을 활용하고 싶을 때
+           fetch("snippet.html")
+                .then(response => {
+                    console.log(response);
+                    return response.text();  //  응답 텍스트를 받아옴
+                })
+                .then(data => {
+                    document.getElementById("info").innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("ERROR:", error);
+                });
         });
     });
 </script>
