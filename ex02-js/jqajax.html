@@ -6,6 +6,11 @@
     <title>Document</title>
     <!-- jQuery Local -->
     <script src="./scripts/jquery/jquery.dev.js"></script>
+    <style>
+        .poster {
+            width: 100px;
+        }
+    </style>
 </head>
 <body>
     <button id="btnCallSnippet">HTML 조각 불러오기</button>
@@ -64,6 +69,47 @@
                 .catch(error => {
                     console.error("ERROR:", error);
                 });
+        });
+
+        $("#btnCallMovies").on("click", event => {
+            //  API 서버 접속, 영화 목록 받아오기
+            fetch("http://localhost:3000/movies")
+                .then(response => {
+                    // console.log(response.json());
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    let movies = data.movies; //    -> Array
+                    //  무비 정보 순회
+                    for (let i = 0; i < movies.length; i++) {
+                        let movie = movies[i];
+                        console.log("개별영화:", movie);
+
+                        let title = movie.title;
+                        let director = movie.director;
+                        let movieId = movie.id;
+
+                        let poster = "http://localhost:3000/images/" + movie.image;
+
+                        //  새 노드 생성 
+                        let tr = $("<tr>");
+                        //  내부 콘텐츠 추가
+                        let content = `
+                        <td><img class="poster" src="${poster}"></td>
+                        <td><h3>${title}</h3></td>
+                        <td>${director}</td>
+                        `;
+
+                        tr.html(content);
+
+                        //  테이블에 추가
+                        $("#list").append(tr);
+                    }
+                })
+                .catch(error => {
+                    console.error("ERROR:", error);
+                })
         });
     });
 </script>
